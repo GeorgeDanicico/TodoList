@@ -1,0 +1,12 @@
+@if (isOpen) {
+<div class="slide-panel">
+<div class="panel-form absolute right-0 max-w-md bg-white w-screen h-screen shadow" @fadeSlideInRight>
+<div>
+</div>
+<div class="slide-panel-content">
+<h2 class="font-bold text-xl">{{headerText}}</h2>
+<ng-content></ng-content>
+</div>
+</div>
+</div>
+}

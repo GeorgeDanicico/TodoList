@@ -1,0 +1,64 @@
+<div class="todo-container">
+  <div class="todo-header">
+    <h2>Manage Todos</h2>
+    <button mat-raised-button color="primary" (click)="openAddTodoPanel()">
+      Add Todo
+    </button>
+  </div>
+
+  <div class="status-container">
+    <button mat-raised-button [color]="filterByStatus === '' ? 'primary' : ''" [class]="{'btn-primary': filterByStatus === ''}"
+            (click)="onFilterByStatus('')">ALL</button>
+    <button mat-raised-button [color]="filterByStatus === 'OPEN' ? 'primary' : ''"
+            (click)="onFilterByStatus('OPEN')">OPEN</button>
+    <button mat-raised-button [color]="filterByStatus === 'PROGRESS' ? 'primary' : ''"
+            (click)="onFilterByStatus('PROGRESS')">PROGRESS</button>
+    <button mat-raised-button [color]="filterByStatus === 'TESTING' ? 'primary' : ''"
+            (click)="onFilterByStatus('TESTING')">TESTING</button>
+    <button mat-raised-button [color]="filterByStatus === 'DONE' ? 'primary' : ''"
+            (click)="onFilterByStatus('DONE')">DONE</button>
+  </div>
+
+  <div class="mt-3 bg-white shadow">
+    @for (item of todos; track $index) {
+    <app-todo-card [type]="item.status" [todo]="item" (click)="onLoadTodoForm(item)"></app-todo-card>
+    }
+  </div>
+</div>
+
+<app-slide-panel [headerText]="'Todo Details'" [isOpen]="isSlidePanelOpen" (onClose)="onCloseSlidePanel()">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="todo-form">
+    <mat-form-field class="mat-form-field">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" placeholder="title" formControlName="title">
+      @if (todoForm.get('title')?.hasError('required') && todoForm.get('title')?.touched) {
+      <mat-error>Email Address is required.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="mat-form-field">
+      <mat-label>Description</mat-label>
+      <input matInput type="text" placeholder="Description" formControlName="description">
+      @if (todoForm.get('description')?.hasError('required') && todoForm.get('description')?.touched) {
+      <mat-error>Description is required.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        @for (item of todoStatus; track $index) {
+        <mat-option [value]="item">{{item}}</mat-option>
+        }
+      </mat-select>
+      @if (todoForm.get('status')?.hasError('required') && todoForm.get('status')?.touched) {
+      <mat-error>Status is required.</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="flex gap-2">
+      <button mat-raised-button type="submit" color="primary">Submit</button>
+      <button mat-raised-button type="button" color="warn" (click)="onCloseSlidePanel()">Cancel</button>
+    </div>
+  </form>
+</app-slide-panel>

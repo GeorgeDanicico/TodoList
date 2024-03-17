@@ -1,0 +1,34 @@
+<mat-card class="todo-card-container">
+  <div class="todo-card-content">
+    <div [class]="'status ' + todo.status"></div>
+
+    <div>
+      <mat-card-header>
+        <h4 class="font-bold">{{todo.title}}</h4>
+      </mat-card-header>
+      <mat-card-content class="card-info">
+        <div [class]="{'yellow': todo.status === 'OPEN','blue': todo.status === 'PROGRESS', 'red': todo.status === 'TESTING', 'green': todo.status === 'DONE'}"></div>
+        <p class="text-gray-400 h-6 overflow-y-hidden">{{todo.description}}</p>
+      </mat-card-content>
+    </div>
+  </div>
+
+  <div>
+    @if (type === 'OPEN') {
+    <div class="rounded-field yellow-field">{{type}}
+    </div>
+    }
+    @if (type === 'PROGRESS') {
+    <div class="rounded-field blue-field">{{type}}
+    </div>
+    }
+    @if (type === 'TESTING') {
+    <div class="rounded-field red-field">{{type}}
+    </div>
+    }
+    @if (type === 'DONE') {
+    <div class="rounded-field green-field">{{type}}
+    </div>
+    }
+  </div>
+</mat-card>
