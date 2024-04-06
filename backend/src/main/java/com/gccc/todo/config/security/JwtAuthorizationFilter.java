@@ -1,4 +1,4 @@
-package com.gccc.todo.config;
+package com.gccc.todo.config.security;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.servlet.FilterChain;

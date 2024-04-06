@@ -1,6 +1,6 @@
 package com.gccc.todo.service;
 
-import com.gccc.todo.config.TokenService;
+import com.gccc.todo.config.security.TokenService;
 import com.gccc.todo.exception.AppException;
 import com.gccc.todo.model.User;
 import com.gccc.todo.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.gccc.todo.config;
+package com.gccc.todo.config.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

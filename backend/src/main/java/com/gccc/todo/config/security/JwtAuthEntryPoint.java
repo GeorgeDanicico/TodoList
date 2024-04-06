@@ -1,4 +1,4 @@
-package com.gccc.todo.config;
+package com.gccc.todo.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

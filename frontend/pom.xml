@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.gccc</groupId>
+    <artifactId>todo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+	<groupId>com.gccc</groupId>
+	<artifactId>frontend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+  <packaging>maven-plugin</packaging>
+
+  <name>frontend</name>
+	<description>Frontend for this project</description>
+
+	<dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>3.9.2</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>3.12.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>3.9.6</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>3.9.6</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.eirslett</groupId>
+      <artifactId>frontend-plugin-core</artifactId>
+      <version>${frontend-maven-plugin.version}</version>
+    </dependency>
+	</dependencies>
+
+	<build>
+    <plugins>
+        <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>${frontend-maven-plugin.version}</version>
+
+          <configuration>
+            <nodeVersion>v18.13.0</nodeVersion>
+            <npmVersion>8.5.0</npmVersion>
+          </configuration>
+
+          <executions>
+              <execution>
+                  <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+                  <id>install node and npm</id>
+                  <goals>
+                      <goal>install-node-and-npm</goal>
+                  </goals>
+                  <!-- optional: default phase is "generate-resources" -->
+                  <phase>generate-resources</phase>
+              </execution>
+
+            <execution>
+              <id>npm install</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+
+              <!-- optional: default phase is "generate-resources" -->
+              <phase>generate-resources</phase>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>3.12.0</version>
+
+          <configuration>
+            <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+            <goalPrefix>frontend</goalPrefix>
+          </configuration>
+          <executions>
+            <execution>
+              <id>mojo-descriptor</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>descriptor</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+    </plugins>
+	</build>
+
+</project>

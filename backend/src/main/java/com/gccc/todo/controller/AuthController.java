@@ -1,6 +1,6 @@
 package com.gccc.todo.controller;
 
-import com.gccc.todo.config.TokenService;
+import com.gccc.todo.config.security.TokenService;
 import com.gccc.todo.model.User;
 import com.gccc.todo.service.UserService;
 import jakarta.validation.Valid;
