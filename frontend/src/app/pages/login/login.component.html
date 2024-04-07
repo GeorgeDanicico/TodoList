@@ -1,5 +1,10 @@
+<div class="login-page">
 <div class="login-container">
-  <h2>Login Here</h2>
+  <div class="icon-container">
+    <mat-icon class="login-icon" aria-hidden="false" fontIcon="person"></mat-icon>
+  </div>
+
+  <p class="login-title">Login</p>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
     <mat-form-field class="mat-form-field">
       <mat-label>Email</mat-label>
@@ -18,6 +23,21 @@
       }
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Login</button>
+    <div class="forgot-password-field">
+      <a routerLink="">Forgot your password?</a>
+    </div>
+
+    <div class="sign-buttons">
+      <button mat-raised-button color="primary">Sign In</button>
+
+      <div class="no-account-link">
+        <a routerLink="">Don't have an account?</a>
+      </div>
+
+      <p>or</p>
+
+      <button mat-raised-button color="basic">Sign In with Google</button>
+    </div>
   </form>
+</div>
 </div>
