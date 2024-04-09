@@ -1,4 +1,3 @@
-<div class="login-page">
 <div class="login-container">
   <div class="icon-container">
     <mat-icon class="login-icon" aria-hidden="false" fontIcon="person"></mat-icon>
@@ -16,8 +15,7 @@
 
     <mat-form-field class="mat-form-field">
       <mat-label>Password</mat-label>
-      <input matInput type="password" placeholder="Password" formControlName="password"
-             [class]="{'invalid': loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched, 'valid':loginForm.get('email')?.valid}">
+      <input matInput type="password" placeholder="Password" formControlName="password">
       @if (loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) {
       <mat-error>Password is required.</mat-error>
       }
@@ -31,7 +29,7 @@
       <button mat-raised-button color="primary">Sign In</button>
 
       <div class="no-account-link">
-        <a routerLink="">Don't have an account?</a>
+        <a routerLink="/register">Don't have an account?</a>
       </div>
 
       <p>or</p>
@@ -40,4 +38,4 @@
     </div>
   </form>
 </div>
-</div>
+

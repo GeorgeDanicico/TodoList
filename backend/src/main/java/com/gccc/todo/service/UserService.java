@@ -4,13 +4,17 @@ import com.gccc.todo.config.security.TokenService;
 import com.gccc.todo.exception.AppException;
 import com.gccc.todo.model.User;
 import com.gccc.todo.repository.UserRepository;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class UserService {
+    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
@@ -41,7 +45,8 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<String> registerUser(String email, String name, String password) {
+    public ResponseEntity<?> registerUser(String email, String name, String password) {
+        logger.info("Registering user with email: {}", email);
         if(userRepository.existsByEmail(email)) {
             return new ResponseEntity<>("Email already exists", HttpStatus.CONFLICT);
         }
@@ -54,7 +59,9 @@ public class UserService {
                 .build();
         userRepository.save(user);
 
-        return new ResponseEntity<>("User successfully created", HttpStatus.CREATED);
+        logger.info("User successfully created with email: {}", email);
+
+        return new ResponseEntity<>(Map.of("message", "User registered successfully"), HttpStatus.CREATED);
     }
 
 }

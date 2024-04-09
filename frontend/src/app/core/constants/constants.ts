@@ -8,6 +8,7 @@ export const apiEndpoint = {
   AuthEndpoint: {
     login: `${apiUrl}/login`,
     logout: `${apiUrl}/logout`,
+    register: `${apiUrl}/register`,
     loggedUser: `${apiUrl}/user`,
   },
   TodoEndpoint: {
@@ -16,3 +17,11 @@ export const apiEndpoint = {
     updateTodo: `${apiUrl}/todos`,
   },
 };
+
+export const SNACK_BAR = {
+    duration: 3000,
+    panelClass: ['snackbar'],
+    verticalPosition: 'top',
+    horizontalPosition: 'center',
+    action: 'Close'
+}

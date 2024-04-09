@@ -24,7 +24,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((e: HttpErrorResponse) => {
       if (e.status === 401) {
         tokenService.removeToken();
-        router.navigate(['']);
+        router.navigate(['/login']);
       }
       const error = e.error?.error?.message || e.statusText;
       return throwError(() => error);
