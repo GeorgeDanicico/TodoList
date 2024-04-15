@@ -39,7 +39,7 @@ export class AuthService {
       next: (response) => {
         this.tokenService.removeToken();
         localStorage.removeItem('userId');
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       },
     });
   }

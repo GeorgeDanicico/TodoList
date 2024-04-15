@@ -12,7 +12,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AuthService } from '../../core/services/auth.service';
 import {MatIconModule} from "@angular/material/icon";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
+import {SNACK_BAR} from "../../core/constants/constants";
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,10 @@ import {RouterLink} from "@angular/router";
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
@@ -36,7 +41,24 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: () => {
-
+          this.snackBar.open(
+              'Logged in successfully',
+              SNACK_BAR.action,
+              {
+                verticalPosition: SNACK_BAR.verticalPosition as MatSnackBarVerticalPosition,
+                horizontalPosition: SNACK_BAR.horizontalPosition as MatSnackBarHorizontalPosition, duration: SNACK_BAR.duration}
+            );
+          this.router.navigate(['/todo']);
+        },
+        error: (error) => {
+          console.log(error);
+          this.snackBar.open(
+            'Invalid credentials.',
+            SNACK_BAR.action,
+            {
+              verticalPosition: SNACK_BAR.verticalPosition as MatSnackBarVerticalPosition,
+              horizontalPosition: SNACK_BAR.horizontalPosition as MatSnackBarHorizontalPosition, duration: SNACK_BAR.duration}
+          );
         },
       });
     } else {

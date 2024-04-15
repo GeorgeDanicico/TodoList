@@ -1,4 +1,17 @@
 <mat-toolbar class="mat-toolbar">
-  <span>Todo Management</span>
+  <span class="app-name">Pla<span class="word">nner</span></span>
+
+  <div class="toolbar-options">
+    <button mat-button color="primary" class="toolbar-option">Dashboard</button>
+
+    <button mat-button color="primary" class="toolbar-option">Expenses</button>
+
+    <button mat-button color="primary" class="toolbar-option">Incomes</button>
+
+    <button mat-button color="primary" class="toolbar-option">Statistics</button>
+
+    <button mat-button color="primary" class="toolbar-option">Settings</button>
+  </div>
+
   <button mat-button (click)="onLogout()">Logout</button>
 </mat-toolbar>
