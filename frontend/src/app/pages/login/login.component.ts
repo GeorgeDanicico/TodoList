@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,16 +15,18 @@ import {MatIconModule} from "@angular/material/icon";
 import {Router, RouterLink} from "@angular/router";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 import {SNACK_BAR} from "../../core/constants/constants";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, RouterLink],
+  imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatIconModule, RouterLink, MatProgressSpinner],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  isLoading = signal(false);
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -37,8 +39,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log("submit");
     if (this.loginForm.valid) {
+      this.isLoading.set(true)
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: () => {
           this.snackBar.open(
@@ -48,7 +50,8 @@ export class LoginComponent {
                 verticalPosition: SNACK_BAR.verticalPosition as MatSnackBarVerticalPosition,
                 horizontalPosition: SNACK_BAR.horizontalPosition as MatSnackBarHorizontalPosition, duration: SNACK_BAR.duration}
             );
-          this.router.navigate(['/']);
+          this.isLoading.set(false);
+          this.router.navigate(['/dashboard']);
         },
         error: (error) => {
           console.log(error);
@@ -59,6 +62,7 @@ export class LoginComponent {
               verticalPosition: SNACK_BAR.verticalPosition as MatSnackBarVerticalPosition,
               horizontalPosition: SNACK_BAR.horizontalPosition as MatSnackBarHorizontalPosition, duration: SNACK_BAR.duration}
           );
+          this.isLoading.set(false);
         },
       });
     } else {

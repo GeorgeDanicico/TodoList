@@ -26,7 +26,7 @@
     </div>
 
     <div class="sign-buttons">
-      <button mat-raised-button color="primary">Sign In</button>
+      <button mat-raised-button color="primary" [disabled]="isLoading()">Sign In</button>
 
       <div class="no-account-link">
         <a routerLink="/register">Don't have an account?</a>
@@ -34,8 +34,14 @@
 
       <p>or</p>
 
-      <button mat-raised-button color="basic">Sign In with Google</button>
+      <button mat-raised-button color="basic" [disabled]="isLoading()">Sign In with Google</button>
     </div>
   </form>
+
+  @if (isLoading()) {
+    <div class="loading-overlay">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+  }
 </div>
 
