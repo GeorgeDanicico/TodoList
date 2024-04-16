@@ -48,7 +48,7 @@ export class LoginComponent {
                 verticalPosition: SNACK_BAR.verticalPosition as MatSnackBarVerticalPosition,
                 horizontalPosition: SNACK_BAR.horizontalPosition as MatSnackBarHorizontalPosition, duration: SNACK_BAR.duration}
             );
-          this.router.navigate(['/todo']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.log(error);

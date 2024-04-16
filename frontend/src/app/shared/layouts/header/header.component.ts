@@ -5,6 +5,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -17,9 +18,19 @@ export class HeaderComponent {
   isAuthenticated$;
   constructor(
     private tokenService: TokenService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.isAuthenticated$ = this.tokenService.isAuthentication;
+  }
+
+  redirectToPage(path: string) {
+    this.router.navigate([path]);
+  }
+
+  isOnRoute(path: string) {
+    return path === this.route.children[0].snapshot.routeConfig?.path;
   }
 
   onLogout() {

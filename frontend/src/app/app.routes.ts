@@ -6,6 +6,7 @@ import { TodoComponent } from './pages/todo/todo.component';
 import { guestGuard } from './core/guards/guest.guard';
 import { authGuard } from './core/guards/auth.guard';
 import {RegisterComponent} from "./pages/register/register.component";
+import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 
 export const routes: Routes = [
   {
@@ -21,6 +22,9 @@ export const routes: Routes = [
     path: '',
     component: MasterComponent,
     canActivate: [authGuard],
-    children: [{ path: 'todo', component: TodoComponent }],
+    children: [
+        { path: 'dashboard', component: DashboardComponent },
+        { path: 'todo', component: TodoComponent }
+    ],
   },
 ];

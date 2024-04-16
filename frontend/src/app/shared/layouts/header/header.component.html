@@ -2,15 +2,17 @@
   <span class="app-name">Pla<span class="word">nner</span></span>
 
   <div class="toolbar-options">
-    <button mat-button color="primary" class="toolbar-option">Dashboard</button>
+    <button mat-flat-button [color]="isOnRoute('dashboard') ? 'primary' : ''" class="toolbar-option" (click)="redirectToPage('dashboard')">Dashboard</button>
 
-    <button mat-button color="primary" class="toolbar-option">Expenses</button>
+    <button mat-flat-button [color]="isOnRoute('expenses') ? 'primary' : ''" class="toolbar-option">Expenses</button>
 
-    <button mat-button color="primary" class="toolbar-option">Incomes</button>
+    <button mat-flat-button [color]="isOnRoute('incomes') ? 'primary' : ''" class="toolbar-option">Incomes</button>
 
-    <button mat-button color="primary" class="toolbar-option">Statistics</button>
+    <button mat-flat-button [color]="isOnRoute('statistics') ? 'primary' : ''" class="toolbar-option">Statistics</button>
 
-    <button mat-button color="primary" class="toolbar-option">Settings</button>
+    <button mat-flat-button [color]="isOnRoute('todo') ? 'primary' : ''" class="toolbar-option" (click)="redirectToPage('todo')">Todos</button>
+
+    <button mat-flat-button [color]="isOnRoute('settings') ? 'primary' : ''" class="toolbar-option">Settings</button>
   </div>
 
   <button mat-button (click)="onLogout()">Logout</button>
