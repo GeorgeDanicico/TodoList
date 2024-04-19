@@ -1,0 +1,56 @@
+<div class="register-container">
+    <div class="icon-container">
+        <mat-icon class="register-icon" aria-hidden="false" fontIcon="person"></mat-icon>
+    </div>
+
+    <p class="register-title">Register</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+        <mat-form-field class="mat-form-field">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Name" formControlName="name">
+            @if (registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched) {
+            <mat-error>Email Address is required.</mat-error>
+            }
+        </mat-form-field>
+        
+        <mat-form-field class="mat-form-field">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" placeholder="Email" formControlName="email">
+            @if (registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched) {
+            <mat-error>Email Address is required.</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="mat-form-field">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            @if (registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched) {
+            <mat-error>Password is required.</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="mat-form-field">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+            @if (registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched) {
+            <mat-error>Confirm Password is required.</mat-error>
+            }
+        </mat-form-field>
+
+        <div class="sign-buttons">
+            <button mat-raised-button color="primary">Sign Up</button>
+
+            <div class="no-account-link">
+                <a routerLink="/login">Already have an account?</a>
+            </div>
+        </div>
+    </form>
+
+    @if (isLoading()) {
+        <div class="loading-overlay">
+          <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
+    }
+</div>
+

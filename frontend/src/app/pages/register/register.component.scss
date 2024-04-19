@@ -1,0 +1,77 @@
+.register-container {
+  height: 480px;
+  width: 400px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+  margin: 200px auto 0 auto;
+
+  .icon-container {
+    margin: -80px auto 20px auto;
+    height: 100px;
+    width: 100px;
+    background-color: #3f51b5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+
+    .register-icon {
+      text-align: center;
+      color: #fff;
+      height: 80px;
+      width: 80px;
+      margin: auto;
+      font-size: 80px;
+    }
+  }
+
+  .register-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .sign-buttons {
+    width: 100%;
+    text-align: center;
+
+    button {
+      height: 50px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .no-account-link {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  .forgot-password-field {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: underline;
+    font-weight: 300;
+    color: #a9a9a9;
+  }
+
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}

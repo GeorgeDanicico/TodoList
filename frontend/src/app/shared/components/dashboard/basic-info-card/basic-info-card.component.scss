@@ -1,0 +1,40 @@
+.basic-info-card {
+  height: 180px;
+  width: 400px;
+  background-color: white;
+  border-right: 4px solid #F06543;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.11) 0px 5px 7px, rgba(0, 0, 0, 0.1) 0px 5px 7px;
+
+  .basic-info-card__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .icon {
+      height: 60px;
+      width: 60px;
+      background: linear-gradient(#FFBE3D, #F06543);
+      border-radius: 10px;
+      display: flex;
+        align-items: center;
+      justify-content: center;
+
+      mat-icon {
+        font-size: 40px;
+        color: white;
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    button {
+      width: 100px;
+      border-radius: 20px;
+    }
+  }
+
+  .basic-info-card__body {
+    padding-left: 20px;
+  }
+}
